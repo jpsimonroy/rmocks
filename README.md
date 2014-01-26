@@ -8,9 +8,10 @@ Clone the git repo and run R CMD INSTALL rmocks
 
 or
 
-use the install_git function from devtools(https://github.com/hadley/devtools) : install_git("https://github.com/jpsimonroy/rmocks")
+use the install_git function from R devtools(https://github.com/hadley/devtools) - install_git("https://github.com/jpsimonroy/rmocks")
 
 ## Usage
+```
 library("testthat")
 
 context("Examples")
@@ -30,8 +31,8 @@ before_each=function(){
 }
 
 
-Use this only if you need to replace a method defn. 
-Restrain from this usage if possible.
+# Use this only if you need to replace a method defn. 
+# Restrain from this usage if possible.
 
 context("spy and expects")
 
@@ -71,7 +72,7 @@ test_that("Use mocks to assert method invocations",{
 
 context("stub and stubs")
 
-Since no assertions are being made, this should be ok.
+#Since no assertions are being made, this should be ok.
 
 test_that("Create a stub and stub a method", {
 	before_each();
@@ -110,6 +111,7 @@ test_that("Use stubs to match arguments and return values",{
 	expect_equal(model_wild_match$method2(1,2), "Default");
 	expect_equal(model_wild_match$method2(), "Default");
 });
+```
 
 ## Contributing
 
