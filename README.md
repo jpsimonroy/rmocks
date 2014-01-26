@@ -11,7 +11,7 @@ or
 use the install_git function from R devtools(https://github.com/hadley/devtools) - install_git("https://github.com/jpsimonroy/rmocks")
 
 ## Usage
-```
+``` R
 library("testthat")
 
 context("Examples")
@@ -116,7 +116,7 @@ test_that("Use stubs to match arguments and return values",{
 1. Expectations do not match when using libraries like multicore in code under test. To work around, alias mclapply with lapply in test mode.
 2. When expecting, instance variables on existing model are lost. So assign class variables post setting up all mocks.
 
-```
+``` R
 setRefClass("IntegrationClass", 
 		fields=list(name="character"),
 		methods=list(
