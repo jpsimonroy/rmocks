@@ -29,9 +29,12 @@ before_each=function(){
 	);
 }
 
+
+Use this only if you need to replace a method defn. 
+Restrain from this usage if possible.
+
 context("spy and expects")
-# Use this only if you need to replace a method defn. 
-# Restrain from this usage if possible.
+
 test_that("Create a spy and mock a method", {
 	before_each();
 	model=spy("IntegrationClass", list(method1=function(){
@@ -68,7 +71,8 @@ test_that("Use mocks to assert method invocations",{
 
 context("stub and stubs")
 
-# Since no assertions are being made, this should be ok.
+Since no assertions are being made, this should be ok.
+
 test_that("Create a stub and stub a method", {
 	before_each();
 	model=stub("IntegrationClass", list(method1=function(){
