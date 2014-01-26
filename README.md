@@ -112,6 +112,38 @@ test_that("Use stubs to match arguments and return values",{
 	expect_equal(model_wild_match$method2(), "Default");
 });
 ```
+## Known Issues
+1. Expectations do not match when using libraries like multicore in code under test. To work around, alias mclapply with lapply in test mode.
+2. When expecting, instance variables on existing model are lost. So assign class variables post setting up all mocks.
+
+```
+setRefClass("IntegrationClass", 
+		fields=list(name="character"),
+		methods=list(
+			method1=function(){
+				return("Method1");
+			},
+			method2=function(argument1, argument2){
+				return(paste(argument1, argument2, sep=""))
+			}
+		),
+	);
+test_that("Test class assignment",{
+	model_strict=stub("IntegrationClass", strict=T);
+	model_strict=model_strict$stubs("method1", list(1,2), "Return");
+	model_strict$name="IntegrationClass" # OK
+	... Test continues
+})
+
+test_that("Test class assignment",{
+	model_strict=stub("IntegrationClass", strict=T);
+	model_strict$name="IntegrationClass" # NOT OK
+	model_strict=model_strict$stubs("method1", list(1,2), "Return");
+	print(model_strict$name) #NULL #BEWARE
+	... Test continues
+})
+
+```
 
 ## Contributing
 
