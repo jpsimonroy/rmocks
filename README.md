@@ -1,6 +1,6 @@
 # Rmocks
 
-Wanted to provide contained coverage for your R code. RMocks enables mocking on methods of R5 classes
+Want to provide contained coverage for your R code? RMocks enables mocking on methods of R5 classes
 
 ## Installation
 
