@@ -9,7 +9,7 @@ Mocker<-setRefClass("Mocker",
 			new_methods=list();
 			new_methods[[method_name]]=function(...){
 				currently_executing_function_name=attributes(sys.function(0))[["name"]];
-				method_meta[[currently_executing_function_name]][["invocations"]]<<-add_to_list(method_meta[[currently_executing_function_name]][["invocations"]], list(...));
+				method_meta[[currently_executing_function_name]][["invocations"]]<<-add_to_list(method_meta[[currently_executing_function_name]][["invocations"]], list(...), by_val=T);
 				return(match_method_returns(currently_executing_function_name, list(...)));
 			}
 			new_methods;
@@ -36,7 +36,7 @@ Mocker<-setRefClass("Mocker",
 		realize_expectations=function(){
 			match=T;
 			for(method_name in names(method_meta)){
-				if(!match_expectations(method_meta[[method_name]][['assertions']], method_meta[[method_name]][['invocations']])){
+				if(!match_expectations(method_meta[[method_name]][['assertions']], unlist(method_meta[[method_name]][['invocations']], recursive=F))){
 					warning(paste("invocations on ", method_name," not matched"))
 					match=F;
 					break;

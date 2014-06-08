@@ -2,11 +2,11 @@ MockBase=setRefClass("MockBase",
 	fields=list(method_meta="list"),
 	methods=list(
 		post_extension=function(mock_base){},
-		add_to_list=function(existing_list, value){
+		add_to_list=function(existing_list, value, by_val=F){
 			if(length(existing_list) == 0 ||is.null(existing_list) || is.na(existing_list)){
 				existing_list=list();
 			}
-			existing_list[[length(existing_list) + 1]]<-value
+			existing_list[[length(existing_list) + 1]]<-if(by_val)  lapply(value, copy) else value
 			existing_list
 		},
 		extend_and_inject=function(method_name, args=NULL, returns=NULL){
