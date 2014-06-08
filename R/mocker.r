@@ -36,7 +36,7 @@ Mocker<-setRefClass("Mocker",
 		realize_expectations=function(){
 			match=T;
 			for(method_name in names(method_meta)){
-				if(!match_expectations(method_meta[[method_name]][['assertions']], unlist(method_meta[[method_name]][['invocations']], recursive=F))){
+				if(!match_expectations(method_meta[[method_name]][['assertions']], method_meta[[method_name]][['invocations']])){
 					warning(paste("invocations on ", method_name," not matched"))
 					match=F;
 					break;

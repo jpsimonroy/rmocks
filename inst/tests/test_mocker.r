@@ -45,6 +45,7 @@ test_that("takes assertions and persists them as instance vars", {
 	model=model$expects("method1", list(1,2,3));
 	model=model$expects("method1", list());
 	expect_that(model, is_a("TestMocker"));
+
 	expect_true(identical(model[['method_meta']][['method1']][['assertions']], list(list(1,2), list(1,2,3), list())));
 });
 
@@ -64,7 +65,6 @@ test_that("returns a new instance which retains contract and also tracks method 
 	
 	model$method1(1,2);
 	model$method1(1,2,3);
-	
 	expect_true(identical(model[['method_meta']][['method1']][['invocations']], list(list(1,2), list(1,2,3))));
 	
 	model$method1();

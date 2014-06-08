@@ -6,7 +6,7 @@ MockBase=setRefClass("MockBase",
 			if(length(existing_list) == 0 ||is.null(existing_list) || is.na(existing_list)){
 				existing_list=list();
 			}
-			existing_list[[length(existing_list) + 1]]<-if(by_val)  lapply(value, copy) else value
+			existing_list[[length(existing_list) + 1]] <- if(by_val) Reduce(function(x, a){return(append(x, a))}, value, list()) else value
 			existing_list
 		},
 		extend_and_inject=function(method_name, args=NULL, returns=NULL){
